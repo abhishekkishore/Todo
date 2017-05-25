@@ -1,0 +1,116 @@
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    /*background-color: #111; *//* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 15px; /* Place content 60px from the top */
+}
+
+.sidenavDiv {
+	width: 100%;
+	display: table;
+}
+
+/* The navigation menu links */
+.sidenav a.item {
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    padding: 8px 8px 8px 32px;
+}
+
+/* The navigation menu links */
+.sidenav a.topic {
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    background-color: #f7f7f9;
+    font-weight: bold;
+    padding: 8px 8px 8px 32px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a.item:hover{
+    background-color: #FFD9B3;
+}
+
+.sidenavDivItem {
+	display: table-cell;
+}
+
+.sidenavDivContainer {
+	border-style: ridge;
+	border-width: 0px 0px 2px 0px;
+	height: 12px;
+	display: table;
+	width: inherit;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+
+/*Table stuff here on.*/
+.item {
+	font-size: 15px;
+	border-style: ridge;
+	border-width: 0px 0px 2px 0px;
+	border-color: initial;
+	padding-left: 20px;
+	margin: 5px 0px 5px 0px;
+}
+
+.group {
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #DFECF5;
+	padding-left: 38px;
+	margin-bottom: 5px;
+	background: #DFECF5 url(/images/icons/folder_red.png) no-repeat;
+}
+
+.block {
+	margin: 10px 0px 10px 0px;
+}
+
+.table-item {
+	font-size: 15px;
+	padding-left: 20px;
+	margin: 0px 0px 0px 0px;
+	background: url(/images/icons/next.png) no-repeat;
+}
+
+.project-item {
+	border-style: ridge;
+	border-width: 0px 0px 2px 0px;
+	border-color: initial;
+	cursor: pointer;
+}
+
+.drag-project-cell {
+	cursor: grab;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
+
+td {
+	padding: 0px 0px 0px 0px;
+}
+
+img {
+	vertical-align: bottom;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+/*@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}*/

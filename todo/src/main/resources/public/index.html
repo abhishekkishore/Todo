@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+</head>
+<body data-ng-app="indexModule" data-ng-controller="indexController">
+	<div id="mySidenav" class="sidenav" style="display:table;">
+	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
+	  	<tbody>
+	  		<tr>
+	  			<td style="display: table-cell;">
+	  				<div class="group">
+	  					<div>Filters</div>
+	  				</div>
+	  				<div class="item" style="background: url(/images/icons/today.png) no-repeat;">
+	  					<div>Today</div>
+	  				</div>
+	  				<div class="item" style="background: url(/images/icons/next.png) no-repeat;">
+	  					<div>Next</div>
+	  				</div>
+	  				<div class="block">
+		  				<div class="group">
+		  					<div>Projects</div>
+		  				</div>
+	  				
+	  					<table class="project-item" style="display: table; width: 100%;" data-ng-repeat="project in projects" data-ng-mouseenter="mouseEnterProject($event)" data-ng-mouseleave="mouseLeaveProject($event)">
+		  					<tbody>
+		  						<tr>
+		  							<td class="drag-project-cell" style="display: table-cell; float: left;">
+		  								<img src="images/grippy.png"/>
+		  							</td>
+		  							<td style="display: table-cell; float: left;" data-ng-click="populateProjectData()">
+		  								<div class="table-item">
+		  									<div>{{project.name}}</div>
+		  								</div>
+		  							</td>
+		  						</tr>
+		  					</tbody>
+		  				</table>
+	  				</div>
+	  				<div class="block">
+	  					<table style="display: table; width: 100%;">
+	  						<tbody>
+	  							<tr>
+	  								<td>
+	  									<input id="create-project-name" type="text"></input>
+	  								</td>
+	  								<td>
+	  									<input type="button" value="Add" style="background: lightblue" data-ng-click="createProject()"></input>
+	  								</td>
+	  							</tr>
+	  						</tbody>
+	  					</table>
+	  				</div>
+	  			</td>
+	  		</tr>
+	  	</tbody>
+	  </table>
+	  <!--a href="https://icons8.com/icon/43563/Today">Free icons by Icons8</a-->
+	</div>
+	<div data-ng-view style="margin-left:250px"></div>
+	<script src="js/index.js"></script>
+	<p style="margin-left:250px">Get your greeting <a href="#greetingPage">here</a></p>
+</body>
+</html>
