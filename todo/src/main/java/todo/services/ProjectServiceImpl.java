@@ -33,4 +33,10 @@ public class ProjectServiceImpl implements ProjectService {
 		return helper.toDto(createdProject);
 	}
 
+	@Override
+	public void deleteProject(int id) {
+		projectRepository.delete(id);
+//		return Constants.SUCCESS;
+	}
+
 }

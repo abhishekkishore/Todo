@@ -30,6 +30,7 @@ public class ProjectHelper {
 		ProjectDto dto = new ProjectDto();
 		dto.setDescription(project.getDescription());
 		dto.setName(project.getName());
+		dto.setId(String.valueOf(project.getProjectId()));
 		return dto;
 	}
 	

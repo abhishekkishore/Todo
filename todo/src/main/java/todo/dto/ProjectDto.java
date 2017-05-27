@@ -1,10 +1,5 @@
 package todo.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import todo.entities.Task;
-
 public class ProjectDto {
 	
 	public String getName() {
@@ -36,4 +31,14 @@ public class ProjectDto {
 	private String description;
 	
 	private TaskDto[] tasks;
+	
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 }

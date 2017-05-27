@@ -7,4 +7,8 @@ public interface ProjectService {
 	public ProjectDtoList getProjects();
 	
 	public ProjectDto createProject(ProjectDto dto);
+	
+	public void deleteProject(int id);
+	
+	
 }
