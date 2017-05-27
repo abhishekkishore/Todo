@@ -85,7 +85,7 @@
 	font-size: 15px;
 	padding-left: 20px;
 	margin: 0px 0px 0px 0px;
-	background: url(/images/icons/next.png) no-repeat;
+	background: url(/images/icons/project.png) no-repeat;
 }
 
 .project-item {
@@ -107,6 +107,12 @@ td {
 
 img {
 	vertical-align: bottom;
+}
+
+ul {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	border: 0px 0px 0px 0px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
