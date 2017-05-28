@@ -3,8 +3,10 @@ var app = angular.module('indexModule', []);
 var CREATE_PROJECT_TEXT_FIELD = "#create-project-name";
 
 var PROJECT_ITEM_OPTIONS_CLASS = ".project-item-options";
+
+var PROJECT_URL = '/projects';
 app.controller('indexController', function($scope, $http) {
-	$http.get('/projects').then(function success(response) {
+	$http.get(PROJECT_URL).then(function success(response) {
 		$scope.projects = response.data.members;
 	}, function error(response) {
 		alert(response.data);
@@ -16,15 +18,30 @@ app.controller('indexController', function($scope, $http) {
 				name: projectName,
 				description: ''
 		};
-		$http.post('/projects', requestBody).then(function success(response){
-			$http.get('/projects').then(function success(response) {
+		$http.post(PROJECT_URL, requestBody).then(function success(response){
+			$(CREATE_PROJECT_TEXT_FIELD).val('');
+			$http.get(PROJECT_URL).then(function success(response) {
 				$scope.projects = response.data.members;
-				$scope.$apply();
 			}, function error(response) {
 				alert(response.data);
 			});
 		}, function error(response) {
 			alert('Failed:'+response.data);
+		});
+	};
+	
+	$scope.deleteProject = function($event) {
+		var element = angular.element($event.currentTarget);
+		var parentRow = $(element).closest('tr'); 
+		var id = $(parentRow).attr('data-project-id');
+		$http.delete(PROJECT_URL + '/' + id).then(function success(response) {
+			$http.get(PROJECT_URL).then(function success(response) {
+				$scope.projects = response.data.members;
+			}, function error(response) {
+				alert(response.data);
+			});
+		}, function error(response) {
+			alert(response.data);
 		});
 	}
 	

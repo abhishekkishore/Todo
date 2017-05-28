@@ -29,7 +29,7 @@
 	  				
 	  					<table class="project-item" style="display: table; width: 100%;" data-ng-repeat="project in projects" data-ng-mouseenter="mouseEnterProject($event)" data-ng-mouseleave="mouseLeaveProject($event)">
 		  					<tbody>
-		  						<tr>
+		  						<tr data-project-id={{project.id}}>
 		  							<td class="drag-project-cell" style="display: table-cell; float: left;">
 		  								<img src="images/icons/reorder.png"/>
 		  							</td>
@@ -57,7 +57,7 @@
 		  							<td class="project-item-options" style="display:none; float:right;">
 		  								<div>
 		  									<img src="images/icons/rename.png"/>
-		  									<img src="images/icons/delete.png"/>
+		  									<img src="images/icons/delete.png" data-ng-click="deleteProject($event)"/>
 		  								</div>
 		  							</td>
 		  						</tr>
