@@ -28,6 +28,11 @@ public class ProjectController {
 		return service.getProjects();
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value = "/{id}")
+	public ProjectDto getProject(@PathVariable String id) {
+		return service.getProject(Integer.valueOf(id));
+	}
+	
 	@RequestMapping(method=RequestMethod.POST)
 	public ProjectDto createProject(@RequestBody ProjectDto dto) {
 		return service.createProject(dto);

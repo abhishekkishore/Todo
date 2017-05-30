@@ -36,7 +36,12 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void deleteProject(int id) {
 		projectRepository.delete(id);
-//		return Constants.SUCCESS;
+	}
+
+	@Override
+	public ProjectDto getProject(int id) {
+		Project project = projectRepository.findOne(id);
+		return helper.toDto(project);
 	}
 
 }
