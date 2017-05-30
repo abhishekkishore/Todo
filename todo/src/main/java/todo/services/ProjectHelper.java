@@ -3,12 +3,15 @@ package todo.services;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import todo.dto.ProjectDto;
 import todo.dto.ProjectDtoList;
+import todo.dto.ProjectTaskDto;
 import todo.entities.Project;
+import todo.entities.Task;
 
 @Component
 public class ProjectHelper {
@@ -31,6 +34,22 @@ public class ProjectHelper {
 		dto.setDescription(project.getDescription());
 		dto.setName(project.getName());
 		dto.setId(String.valueOf(project.getProjectId()));
+		
+		if(project.getTasks() != null && project.getTasks().size() > 0) {
+			Set<Task> tasks = project.getTasks();
+			ProjectTaskDto[] taskDtos = new ProjectTaskDto[tasks.size()];
+			
+			Iterator<Task> taskIterator = tasks.iterator();
+			int i = 0;
+			while(taskIterator.hasNext()) {
+				Task task = taskIterator.next();
+				taskDtos[i] = new ProjectTaskDto();
+				taskDtos[i].setId(String.valueOf(task.getTaskId()));
+				taskDtos[i].setName(task.getName());
+				i++;
+			}
+			dto.setTasks(taskDtos);
+		}
 		return dto;
 	}
 	

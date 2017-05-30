@@ -18,11 +18,11 @@ public class ProjectDto {
 		this.description = description;
 	}
 
-	public TaskDto[] getTasks() {
+	public ProjectTaskDto[] getTasks() {
 		return tasks;
 	}
 
-	public void setTasks(TaskDto[] tasks) {
+	public void setTasks(ProjectTaskDto[] tasks) {
 		this.tasks = tasks;
 	}
 
@@ -30,7 +30,7 @@ public class ProjectDto {
 	
 	private String description;
 	
-	private TaskDto[] tasks;
+	private ProjectTaskDto[] tasks;
 	
 	private String id;
 
