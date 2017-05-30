@@ -6,14 +6,8 @@
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
-    /*background-color: #111; *//* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 15px; /* Place content 60px from the top */
-}
-
-.sidenavDiv {
-	width: 100%;
-	display: table;
 }
 
 /* The navigation menu links */
@@ -103,10 +97,11 @@
 
 td {
 	padding: 0px 0px 0px 0px;
+	vertical-align: top;
 }
 
 img {
-	vertical-align: bottom;
+	vertical-align: top;
 }
 
 ul {

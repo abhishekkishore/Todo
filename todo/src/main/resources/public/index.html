@@ -6,9 +6,10 @@
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/sidenav.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body data-ng-app="indexModule" data-ng-controller="indexController">
-	<div id="mySidenav" class="sidenav" style="display:table;">
+	<div class="sidenav" style="display:table;">
 	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
 	  	<tbody>
 	  		<tr>
@@ -27,33 +28,17 @@
 		  					<div>Projects</div>
 		  				</div>
 	  				
-	  					<table class="project-item" style="display: table; width: 100%;" data-ng-repeat="project in projects" data-ng-mouseenter="mouseEnterProject($event)" data-ng-mouseleave="mouseLeaveProject($event)">
+	  					<table class="project-item" style="display: table; width: 100%;" data-ng-repeat="project in projects" data-ng-mouseenter="mouseEnterProject($event)" data-ng-mouseleave="mouseLeaveProject($event)" data-ng-click="populateProjectData(project)">
 		  					<tbody>
 		  						<tr data-project-id={{project.id}}>
 		  							<td class="drag-project-cell" style="display: table-cell; float: left;">
 		  								<img src="images/icons/reorder.png"/>
 		  							</td>
-		  							<td style="display: table-cell; float: left;" data-ng-click="populateProjectData()">
+		  							<td style="display: table-cell; float: left;">
 		  								<div class="table-item">
 		  									<div>{{project.name}}</div>
 		  								</div>
 		  							</td>
-		  							<!--td class="project-item-options" style="display: none; float: right;">
-		  								<ul style="list-style: none;">
-		  									<li>
-		  										<img src="images/icons/dropdown.png"/>
-		  										<ul style="list-style: none;">
-		  											<li>Delete</li>
-		  										</ul>
-		  									</li>
-		  								</ul>
-		  							</td-->
-		  							<!--td class="project-item-options" style="display: table-cell; float: right;">
-		  								<img src="images/icons/rename.png"/>
-		  							</td>
-		  							<td class="project-item-options" style="display: table-cell; float: right;">
-		  								<img src="images/icons/delete.png"/>
-		  							</td-->
 		  							<td class="project-item-options" style="display:none; float:right;">
 		  								<div>
 		  									<img src="images/icons/rename.png"/>
@@ -79,13 +64,17 @@
 	  					</table>
 	  				</div>
 	  			</td>
+	  			<td style="display: table-cell; padding-left: 50px;">
+  					<div class="heading">
+						<div id="main-page-project-name"></div>
+					</div>
+	  			</td>
 	  		</tr>
 	  	</tbody>
 	  </table>
 	  <!--a href="https://icons8.com/icon/43563/Today">Free icons by Icons8</a-->
 	</div>
-	<div data-ng-view style="margin-left:250px"></div>
 	<script src="js/index.js"></script>
-	<p style="margin-left:250px">Get your greeting <a href="#greetingPage">here</a></p>
+
 </body>
 </html>

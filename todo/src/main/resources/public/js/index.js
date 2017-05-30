@@ -1,6 +1,7 @@
 var app = angular.module('indexModule', []);
 
 var CREATE_PROJECT_TEXT_FIELD = "#create-project-name";
+var MAIN_PAGE_PROJECT_NAME = '#main-page-project-name';
 
 var PROJECT_ITEM_OPTIONS_CLASS = ".project-item-options";
 
@@ -45,8 +46,8 @@ app.controller('indexController', function($scope, $http) {
 		});
 	}
 	
-	$scope.populateProjectData = function() {
-		alert('Click!');
+	$scope.populateProjectData = function(project) {
+		$(MAIN_PAGE_PROJECT_NAME).html(project.name);
 	};
 	
 	$scope.mouseEnterProject = function($event) {
