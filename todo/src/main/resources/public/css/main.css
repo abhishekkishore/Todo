@@ -1,4 +1,29 @@
 .heading {
 	font-size: 25px;
 	font-weight: bold;
+	padding-left: 35px;
+	padding-bottom: 10px;
+	background: url(/images/icons/main_project.png) no-repeat;
+}
+
+/* The side navigation menu */
+.main {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 15px; /* Place content 60px from the top */
+    float: right;
+}
+
+.task-name {
+	display: table;
+	width: 100%;
+	border: ridge;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
 }

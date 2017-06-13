@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html style="height: 100vh; min-height: 100vh;">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <head>
@@ -7,9 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/sidenav.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/index.js"></script>
 </head>
 <body data-ng-app="indexModule" data-ng-controller="indexController">
-	<div class="sidenav" style="display:table;">
+<div>
+	<div class="sidenav" style="display:table; width: 20%;">
 	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
 	  	<tbody>
 	  		<tr>
@@ -27,8 +29,12 @@
 		  				<div class="group">
 		  					<div>Projects</div>
 		  				</div>
-	  				
-	  					<table class="project-item" style="display: table; width: 100%;" data-ng-repeat="project in projects" data-ng-mouseenter="mouseEnterProject($event)" data-ng-mouseleave="mouseLeaveProject($event)" data-ng-click="populateProjectData(project)">
+	  					<table class="project-item" style="display: table; width: 100%;"
+	  					data-ng-repeat="project in projects" 
+	  					data-ng-mouseenter="mouseEnterProject($event)" 
+	  					data-ng-mouseleave="mouseLeaveProject($event)" 
+	  					data-ng-click="handleClick($event, project)"
+	  					data-project-id={{project.id}}>
 		  					<tbody>
 		  						<tr data-project-id={{project.id}}>
 		  							<td class="drag-project-cell" style="display: table-cell; float: left;">
@@ -54,7 +60,7 @@
 	  						<tbody>
 	  							<tr>
 	  								<td>
-	  									<input id="create-project-name" type="text"></input>
+	  									<input id="create-project-name" type="text" style="width:90%;"></input>
 	  								</td>
 	  								<td>
 	  									<input type="button" value="Add" style="background: lightblue" data-ng-click="createProject()"></input>
@@ -64,17 +70,39 @@
 	  					</table>
 	  				</div>
 	  			</td>
-	  			<td style="display: table-cell; padding-left: 50px;">
-  					<div class="heading">
-						<div id="main-page-project-name"></div>
-					</div>
-	  			</td>
 	  		</tr>
 	  	</tbody>
 	  </table>
 	  <!--a href="https://icons8.com/icon/43563/Today">Free icons by Icons8</a-->
 	</div>
-	<script src="js/index.js"></script>
-
+	<div class="main" style="display:table; width:80%">
+	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
+	  	<tbody>
+	  		<tr>
+	  			<td style="display: table-cell; padding-left: 50px;">
+  					<div class="heading">
+						<div id="main-page-project-name"></div>
+					</div>
+					<table class="task-name"
+	  					data-ng-repeat="task in currentProjectTasks" >
+	  					<tbody>
+	  						<tr>
+	  							<td class="drag-project-cell" style="display: table-cell; float: left;">
+	  								<img src="images/icons/reorder.png"/>
+		  						</td>
+		  						<td style="display: table-cell; float: left;">
+	  								<div>
+	  									<input type="checkbox"> {{task.name}}
+	  								</div>
+	  							</td>
+	  						</tr>
+	  					</tbody>
+  					</table>
+	  			</td>
+	  		</tr>
+	  	</tbody>
+	  </table>
+	 </div>
+</div>
 </body>
 </html>
