@@ -8,6 +8,7 @@ var PROJECT_ITEM_OPTIONS_CLASS = ".project-item-options";
 var PROJECT_URL = '/projects';
 
 var SELECTED_PROJECT_ID;
+var SIDENAV_PROJECT_ID_ATTR = 'data-project-id';
 app.controller('indexController', function($scope, $http) {
 	$http.get(PROJECT_URL).then(function success(response) {
 		$scope.projects = response.data.members;
@@ -36,7 +37,7 @@ app.controller('indexController', function($scope, $http) {
 	$scope.deleteProject = function($event) {
 		var element = angular.element($event.currentTarget);
 		var parentRow = $(element).closest('tr'); 
-		var id = $(parentRow).attr('data-project-id');
+		var id = $(parentRow).attr(SIDENAV_PROJECT_ID_ATTR);
 		$http.delete(PROJECT_URL + '/' + id).then(function success(response) {
 			$http.get(PROJECT_URL).then(function success(response) {
 				$scope.projects = response.data.members;
@@ -60,17 +61,18 @@ app.controller('indexController', function($scope, $http) {
 	
 	$scope.handleClick = function($event, project) {
 		var element = angular.element($event.currentTarget);
-		if($(element).attr('data-project-id') !== SELECTED_PROJECT_ID) {
+		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) !== SELECTED_PROJECT_ID) {
+			$('[' + SIDENAV_PROJECT_ID_ATTR + "=" + SELECTED_PROJECT_ID + ']').css('background-color', 'initial');
 			$(element).css('background-color', 'lightgreen');
 			$scope.populateProjectData(element, project);
 //			$scope.selectProject(element, true, true);
-			SELECTED_PROJECT_ID = $(element).attr('data-project-id');
+			SELECTED_PROJECT_ID = $(element).attr(SIDENAV_PROJECT_ID_ATTR);
 		}
 	};
 	
 	$scope.mouseEnterProject = function($event) {
 		var element = angular.element($event.currentTarget);
-		if($(element).attr('data-project-id') === SELECTED_PROJECT_ID) {
+		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) === SELECTED_PROJECT_ID) {
 			$(element).css('background-color', 'limegreen');
 		}
 		else {
@@ -81,7 +83,7 @@ app.controller('indexController', function($scope, $http) {
 	
 	$scope.mouseLeaveProject = function($event) {
 		var element = angular.element($event.currentTarget);
-		if($(element).attr('data-project-id') !== SELECTED_PROJECT_ID) {
+		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) !== SELECTED_PROJECT_ID) {
 			$(element).css('background-color', 'initial');
 		}
 		$(element).find(PROJECT_ITEM_OPTIONS_CLASS).css('display', 'none');
