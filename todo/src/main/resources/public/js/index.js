@@ -83,7 +83,10 @@ app.controller('indexController', function($scope, $http) {
 	
 	$scope.mouseLeaveProject = function($event) {
 		var element = angular.element($event.currentTarget);
-		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) !== SELECTED_PROJECT_ID) {
+		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) === SELECTED_PROJECT_ID) {
+			$(element).css('background-color', 'lightgreen');
+		}
+		else {
 			$(element).css('background-color', 'initial');
 		}
 		$(element).find(PROJECT_ITEM_OPTIONS_CLASS).css('display', 'none');
