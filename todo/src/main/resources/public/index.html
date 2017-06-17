@@ -33,8 +33,9 @@
 	  					data-ng-repeat="project in projects" 
 	  					data-ng-mouseenter="mouseEnterProject($event)" 
 	  					data-ng-mouseleave="mouseLeaveProject($event)" 
-	  					data-ng-click="handleClick($event, project)"
-	  					data-project-id={{project.id}}>
+	  					data-ng-click="handleProjectClick($event, project.id)"
+	  					data-project-id={{project.id}}
+	  					data-ng-attr-select-project="{{$index === 0 ? 'true':'false'}}">
 		  					<tbody>
 		  						<tr data-project-id={{project.id}}>
 		  							<td class="drag-project-cell" style="display: table-cell; float: left;">

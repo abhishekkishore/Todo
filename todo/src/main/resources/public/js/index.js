@@ -1,5 +1,20 @@
 var app = angular.module('indexModule', []);
 
+app.directive('selectProject', function() {
+    var directive = {};
+
+    directive.restrict = 'A';
+
+    directive.link = function($scope, element, attributes) {
+        console.log('testing directive: ' + attributes.selectProject);
+        if(attributes.selectProject === 'true') {
+        	$scope.handleProjectSelection(element, attributes.projectId);
+        }
+    };
+
+    return directive;
+});
+
 var CREATE_PROJECT_TEXT_FIELD = "#create-project-name";
 var MAIN_PAGE_PROJECT_NAME = '#main-page-project-name';
 
@@ -49,8 +64,8 @@ app.controller('indexController', function($scope, $http) {
 		});
 	};
 	
-	$scope.populateProjectData = function(element, project) {
-		$http.get(PROJECT_URL + '/' + project.id).then(function success(response) {
+	$scope.populateProjectData = function(element, projectId) {
+		$http.get(PROJECT_URL + '/' + projectId).then(function success(response) {
 			$scope.currentProject = response.data;
 			$scope.currentProjectTasks = response.data.tasks;
 			$(MAIN_PAGE_PROJECT_NAME).html($scope.currentProject.name);
@@ -59,14 +74,17 @@ app.controller('indexController', function($scope, $http) {
 		});
 	};
 	
-	$scope.handleClick = function($event, project) {
+	$scope.handleProjectClick = function($event, projectId) {
 		var element = angular.element($event.currentTarget);
+		$scope.handleProjectSelection(element, projectId);
+	};
+	
+	$scope.handleProjectSelection = function(element, projectId) {
 		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) !== SELECTED_PROJECT_ID) {
 			$('[' + SIDENAV_PROJECT_ID_ATTR + "=" + SELECTED_PROJECT_ID + ']').css('background-color', 'initial');
 			$(element).css('background-color', 'lightgreen');
-			$scope.populateProjectData(element, project);
-//			$scope.selectProject(element, true, true);
-			SELECTED_PROJECT_ID = $(element).attr(SIDENAV_PROJECT_ID_ATTR);
+			$scope.populateProjectData(element, projectId);
+			SELECTED_PROJECT_ID = projectId;
 		}
 	};
 	
