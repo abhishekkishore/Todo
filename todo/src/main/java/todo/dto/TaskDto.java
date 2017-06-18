@@ -19,14 +19,6 @@ public class TaskDto {
 		this.description = description;
 	}
 
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getDueDate() {
 		return dueDate;
 	}
@@ -46,8 +38,6 @@ public class TaskDto {
 	private String name;
 	
 	private String description;
-	
-	private String createdDate;
 	
 	private String dueDate;
 	

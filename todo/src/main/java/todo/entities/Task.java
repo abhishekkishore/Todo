@@ -38,14 +38,6 @@ public class Task {
 		this.description = description;
 	}
 
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getDueDate() {
 		return dueDate;
 	}
@@ -59,8 +51,6 @@ public class Task {
 	private String name;
 	
 	private String description;
-	
-	private String createdDate;
 	
 	private String dueDate;
 	
