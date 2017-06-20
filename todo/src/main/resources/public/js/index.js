@@ -18,9 +18,12 @@ app.directive('selectProject', function() {
 var CREATE_PROJECT_TEXT_FIELD = "#create-project-name";
 var MAIN_PAGE_PROJECT_NAME = '#main-page-project-name';
 
+var CREATE_TASK_TEXT_FIELD = "#create-task-name";
+
 var PROJECT_ITEM_OPTIONS_CLASS = ".project-item-options";
 
 var PROJECT_URL = '/projects';
+var TASK_URL = '/tasks';
 
 var SELECTED_PROJECT_ID;
 var SIDENAV_PROJECT_ID_ATTR = 'data-project-id';
@@ -64,13 +67,41 @@ app.controller('indexController', function($scope, $http) {
 		});
 	};
 	
-	$scope.populateProjectData = function(element, projectId) {
+	$scope.populateProjectData = function(projectId) {
 		$http.get(PROJECT_URL + '/' + projectId).then(function success(response) {
 			$scope.currentProject = response.data;
 			$scope.currentProjectTasks = response.data.tasks;
 			$(MAIN_PAGE_PROJECT_NAME).html($scope.currentProject.name);
 		}, function error(response) {
 			alert(response.data);
+		});
+	};
+	
+	$scope.handleCreateTask = function($event) {
+		if($event.which === 13) {
+			var taskName = $(CREATE_TASK_TEXT_FIELD).val();
+			$scope.createTask(taskName, '', '', SELECTED_PROJECT_ID);
+		}
+	};
+	
+	$scope.createTask = function(name, description, dueDate, projectId) {
+		var requestBody = {
+				name: name,
+				description: description,
+				dueDate: dueDate,
+				projectId: projectId
+				
+		};
+		$http.post(TASK_URL, requestBody).then(function success(response){
+			$(CREATE_TASK_TEXT_FIELD).val('');
+//			$http.get(TASK_URL).then(function success(response) {
+//				$scope.projects = response.data.members;
+//			}, function error(response) {
+//				alert(response.data);
+//			});
+			$scope.populateProjectData(SELECTED_PROJECT_ID);
+		}, function error(response) {
+			alert('Failed:'+response.data);
 		});
 	};
 	
@@ -83,7 +114,7 @@ app.controller('indexController', function($scope, $http) {
 		if($(element).attr(SIDENAV_PROJECT_ID_ATTR) !== SELECTED_PROJECT_ID) {
 			$('[' + SIDENAV_PROJECT_ID_ATTR + "=" + SELECTED_PROJECT_ID + ']').css('background-color', 'initial');
 			$(element).css('background-color', 'lightgreen');
-			$scope.populateProjectData(element, projectId);
+			$scope.populateProjectData(projectId);
 			SELECTED_PROJECT_ID = projectId;
 		}
 	};

@@ -61,10 +61,10 @@
 	  						<tbody>
 	  							<tr>
 	  								<td>
-	  									<input id="create-project-name" type="text" style="width:90%;"></input>
+	  									<input id="create-project-name" type="text" style="width:90%; border-radius: 5px;"></input>
 	  								</td>
 	  								<td>
-	  									<input type="button" value="Add" style="background: lightblue" data-ng-click="createProject()"></input>
+	  									<input type="button" value="Add" style="background: lightblue; width: 100%;" data-ng-click="createProject()"></input>
 	  								</td>
 	  							</tr>
 	  						</tbody>
@@ -80,12 +80,12 @@
 	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
 	  	<tbody>
 	  		<tr>
-	  			<td style="display: table-cell; padding-left: 50px;">
+	  			<td class="main-page-td">
   					<div class="heading">
 						<div id="main-page-project-name"></div>
 					</div>
 					<table class="task-name"
-	  					data-ng-repeat="task in currentProjectTasks" >
+	  					data-ng-repeat="task in currentProjectTasks | orderBy: 'id'" >
 	  					<tbody>
 	  						<tr>
 	  							<td class="drag-project-cell" style="display: table-cell; float: left;">
@@ -99,6 +99,14 @@
 	  						</tr>
 	  					</tbody>
   					</table>
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td class="main-page-td">
+	  				<input id="create-task-name" type="text"
+	  				style="margin-top: 10px; border-style: ridge; border-radius: 10px; width: 100%;"
+	  				placeholder="Type task name here, and press Enter"
+	  				data-ng-keyDown="handleCreateTask($event)"/>
 	  			</td>
 	  		</tr>
 	  	</tbody>

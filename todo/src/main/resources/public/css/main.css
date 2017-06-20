@@ -6,7 +6,6 @@
 	background: url(/images/icons/main_project.png) no-repeat;
 }
 
-/* The side navigation menu */
 .main {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
@@ -16,6 +15,11 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 15px; /* Place content 60px from the top */
     float: right;
+}
+
+.main-page-td {
+	display: table-cell;
+	padding-left: 50px;
 }
 
 .task-name {
