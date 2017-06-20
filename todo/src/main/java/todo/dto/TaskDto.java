@@ -1,7 +1,5 @@
 package todo.dto;
 
-import todo.entities.Project;
-
 public class TaskDto {
 	public String getName() {
 		return name;
@@ -27,19 +25,19 @@ public class TaskDto {
 		this.dueDate = dueDate;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
 	private String name;
 	
 	private String description;
 	
 	private String dueDate;
 	
-	private Project project;
+	private String projectId;
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId;
+	}
 }

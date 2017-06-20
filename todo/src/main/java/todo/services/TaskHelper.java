@@ -3,16 +3,17 @@ package todo.services;
 import org.springframework.stereotype.Component;
 
 import todo.dto.TaskDto;
+import todo.entities.Project;
 import todo.entities.Task;
 
 @Component
 public class TaskHelper {
-	public Task toEntity(TaskDto dto) {
+	public Task toEntity(TaskDto dto, Project project) {
 		Task task = new Task();
 		task.setDescription(dto.getDescription());
 		task.setDueDate(dto.getDueDate());
 		task.setName(dto.getName());
-		task.setProject(dto.getProject());
+		task.setProject(project);
 		return task;
 	}
 	
@@ -21,7 +22,7 @@ public class TaskHelper {
 		dto.setDescription(task.getDescription());
 		dto.setDueDate(task.getDueDate());
 		dto.setName(task.getName());
-		dto.setProject(task.getProject());
+		dto.setProjectId(String.valueOf(task.getProject().getProjectId()));
 		return dto;
 	}
 }
