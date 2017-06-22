@@ -17,6 +17,9 @@ app.directive('selectProject', function() {
 
 var CREATE_PROJECT_TEXT_FIELD = "#create-project-name";
 var MAIN_PAGE_PROJECT_NAME = '#main-page-project-name';
+var MAIN_PAGE_CREATE_TASK_NAME_TEXT_FIELD = "#create-task-name";
+var MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD = "#create-task-description";
+var MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD = "#create-task-due-date";
 
 var CREATE_TASK_TEXT_FIELD = "#create-task-name";
 
@@ -25,9 +28,12 @@ var PROJECT_ITEM_OPTIONS_CLASS = ".project-item-options";
 var PROJECT_URL = '/projects';
 var TASK_URL = '/tasks';
 
+var task_creation_box_expanded = false;
+
 var SELECTED_PROJECT_ID;
 var SIDENAV_PROJECT_ID_ATTR = 'data-project-id';
 app.controller('indexController', function($scope, $http) {
+	$(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).datepicker();
 	$http.get(PROJECT_URL).then(function success(response) {
 		$scope.projects = response.data.members;
 	}, function error(response) {
@@ -79,8 +85,16 @@ app.controller('indexController', function($scope, $http) {
 	
 	$scope.handleCreateTask = function($event) {
 		if($event.which === 13) {
-			var taskName = $(CREATE_TASK_TEXT_FIELD).val();
-			$scope.createTask(taskName, '', '', SELECTED_PROJECT_ID);
+			var name = $(CREATE_TASK_TEXT_FIELD).val();
+			
+			if($(MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD).css('display') !== 'none') {
+				var description = $(MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD).val();
+			}
+			
+			if($(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).css('display') !== 'none') {
+				var dueDate = $(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).val();
+			}
+			$scope.createTask(name, description, dueDate, SELECTED_PROJECT_ID);
 		}
 	};
 	
@@ -94,11 +108,8 @@ app.controller('indexController', function($scope, $http) {
 		};
 		$http.post(TASK_URL, requestBody).then(function success(response){
 			$(CREATE_TASK_TEXT_FIELD).val('');
-//			$http.get(TASK_URL).then(function success(response) {
-//				$scope.projects = response.data.members;
-//			}, function error(response) {
-//				alert(response.data);
-//			});
+			$(MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD).val('');
+			$(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).val('');
 			$scope.populateProjectData(SELECTED_PROJECT_ID);
 		}, function error(response) {
 			alert('Failed:'+response.data);
@@ -139,5 +150,22 @@ app.controller('indexController', function($scope, $http) {
 			$(element).css('background-color', 'initial');
 		}
 		$(element).find(PROJECT_ITEM_OPTIONS_CLASS).css('display', 'none');
+	};
+	
+	$scope.toggleTaskCreationFields = function($event) {
+		var element = angular.element($event.currentTarget);
+		if(!task_creation_box_expanded) {
+			$(element).html('less');
+			$(MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD).css('display', 'initial');
+			$(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).css('display', 'initial');
+			$(MAIN_PAGE_CREATE_TASK_NAME_TEXT_FIELD).css('border-width', '0px 0px 2px 0px');
+		}
+		else {
+			$(element).html('more');
+			$(MAIN_PAGE_CREATE_TASK_DESCRIPTION_TEXT_FIELD).css('display', 'none');
+			$(MAIN_PAGE_CREATE_DUE_DATE_TEXT_FIELD).css('display', 'none');
+			$(MAIN_PAGE_CREATE_TASK_NAME_TEXT_FIELD).css('border-width', '0px 0px 0px 0px');
+		}
+		task_creation_box_expanded = !task_creation_box_expanded;
 	};
 });

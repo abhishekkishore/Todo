@@ -2,6 +2,7 @@
 <html style="height: 100vh; min-height: 100vh;">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -103,10 +104,25 @@
 	  		</tr>
 	  		<tr>
 	  			<td class="main-page-td">
-	  				<input id="create-task-name" type="text"
-	  				style="margin-top: 10px; border-style: ridge; border-radius: 10px; width: 100%;"
-	  				placeholder="Type task name here, and press Enter"
-	  				data-ng-keyDown="handleCreateTask($event)"/>
+	  				<div style="border: ridge; border-radius: 5px; margin-top: 10px; transition: height 10s;">
+	  					<input id="create-task-name" type="text"
+		  				style="margin-top: 0px; border-style: ridge; width: 100%; border-width: 0px 0px 0px 0px;"
+		  				placeholder="Type task name here, and press Enter"
+		  				data-ng-keyDown="handleCreateTask($event)"/>
+		  				
+		  				<input id="create-task-description" type="text"
+		  				style="margin-top: 0px; border-style: ridge; width: 100%; border-width: 0px 0px 2px 0px; display: none;"
+		  				placeholder="Type task description here, and press Enter"
+		  				data-ng-keyDown="handleCreateTask($event)"/>
+		  				
+		  				<input id="create-task-due-date" type="text"
+		  				style="margin-top: 0px; width: 100%; border: none; display: none;"
+		  				placeholder="Enter task due date here, and press Enter"
+		  				data-ng-keyDown="handleCreateTask($event)"/>
+		  				
+		  				<div style="float: right; font-size: 12px; background-color: lightgray; cursor: pointer;"
+		  				data-ng-click="toggleTaskCreationFields($event)">more</div>
+	  				</div>
 	  			</td>
 	  		</tr>
 	  	</tbody>
