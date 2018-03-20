@@ -12,5 +12,5 @@ public interface ProjectService {
 	
 	public void deleteProject(int id);
 	
-	
+	public ProjectDto updateProject(int id, ProjectDto dto);
 }

@@ -34,6 +34,16 @@ public class ProjectDto {
 	
 	private String id;
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    private int order;
+
 	public String getId() {
 		return id;
 	}

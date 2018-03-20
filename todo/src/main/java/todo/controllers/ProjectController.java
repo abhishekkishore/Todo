@@ -44,4 +44,9 @@ public class ProjectController {
 		service.deleteProject(Integer.valueOf(id));
 		return null;
 	}
+
+	@RequestMapping(method=RequestMethod.PUT, value = "/{id}")
+	public ProjectDto updateProject (@PathVariable String id, @RequestBody ProjectDto dto) {
+        return service.updateProject(Integer.valueOf(id), dto);
+	}
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/index.js"></script>
 </head>
-<body data-ng-app="indexModule" data-ng-controller="indexController">
+<body data-ng-app="indexModule" data-ng-controller="indexController" data-ng-init="init()">
 <div>
 	<div class="sidenav" style="display:table; width: 20%;">
 	  <table style="padding: 50px 0px 0px 40px; display: table; width: 100%;">
@@ -30,8 +30,8 @@
 		  				<div class="group">
 		  					<div>Projects</div>
 		  				</div>
-	  					<table class="project-item" style="display: table; width: 100%;"
-	  					data-ng-repeat="project in projects" 
+	  					<table class="project-item" style="display: table; width: 100%;" drop-target-item="true"
+	  					data-ng-repeat="project in projects | orderBy :'order'"
 	  					data-ng-mouseenter="mouseEnterProject($event)" 
 	  					data-ng-mouseleave="mouseLeaveProject($event)" 
 	  					data-ng-click="handleProjectClick($event, project.id)"
@@ -39,12 +39,12 @@
 	  					data-ng-attr-select-project="{{$index === 0 ? 'true':'false'}}">
 		  					<tbody>
 		  						<tr data-project-id={{project.id}}>
-		  							<td class="drag-project-cell" style="display: table-cell; float: left;">
-		  								<img src="images/icons/reorder.png"/>
+		  							<td style="display: table-cell; float: left;">
+		  								<img draggable-item="true" src="images/icons/reorder.png"/>
 		  							</td>
 		  							<td style="display: table-cell; float: left;">
 		  								<div class="table-item">
-		  									<div>{{project.name}}</div>
+		  									<div id="project-name-div">{{project.name}}</div>
 		  								</div>
 		  							</td>
 		  							<td class="project-item-options" style="display:none; float:right;">

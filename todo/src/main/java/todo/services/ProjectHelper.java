@@ -34,6 +34,7 @@ public class ProjectHelper {
 		dto.setDescription(project.getDescription());
 		dto.setName(project.getName());
 		dto.setId(String.valueOf(project.getProjectId()));
+		dto.setOrder(project.getProjectOrder());
 		
 		if(project.getTasks() != null && project.getTasks().size() > 0) {
 			Set<Task> tasks = project.getTasks();
@@ -57,6 +58,7 @@ public class ProjectHelper {
 		Project project = new Project();
 		project.setName(dto.getName());
 		project.setDescription(dto.getDescription());
+		project.setProjectOrder(dto.getOrder());
 		return project;
 	}
 }

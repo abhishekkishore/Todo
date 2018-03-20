@@ -46,6 +46,16 @@ public class Project {
 	private String name;
 	
 	private String description;
+
+	public int getProjectOrder() {
+		return projectOrder;
+	}
+
+	public void setProjectOrder(int projectOrder) {
+		this.projectOrder = projectOrder;
+	}
+
+	private int projectOrder;
 	
 	private Set<Task> tasks = new HashSet<Task>();
 
